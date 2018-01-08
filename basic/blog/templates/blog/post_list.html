@@ -6,5 +6,16 @@
 </head>
 <body>
     <h1>Ask-Django-Basic</h1>
+
+    <ul>
+    {% for post in post_list %}
+        <li>
+            {{ post.id}}
+            {{ post.title}}
+            <small>by {{ post.author }}</small>
+            <small>at {{ post.updated_at }}</small>
+        </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
