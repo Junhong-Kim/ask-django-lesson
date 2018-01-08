@@ -10,6 +10,7 @@ def lnglat_validator(value):
 
 
 class Post(models.Model):
+    author = models.CharField(max_length=20)
     # 길이 제한이 있는 문자열
     title = models.CharField(max_length=100,
                              verbose_name='제목',
