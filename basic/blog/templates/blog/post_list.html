@@ -7,6 +7,11 @@
 <body>
     <h1>Ask-Django-Basic</h1>
 
+    <form action="" method="get">
+        <input type="text" name="q" value="{{ q }}">
+        <input type="submit" value="search">
+    </form>
+
     <ul>
     {% for post in post_list %}
         <li>
