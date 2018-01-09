@@ -5,20 +5,28 @@
 {%  endblock %}
 
 {%  block content %}
-    <h2>{{ post.title }}</h2>
-    {{ post.content | linebreaks }}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ post.title }}</h2>
+                {{ post.content | linebreaks }}
 
-    <hr>
+                <hr>
 
-    <h3>Comments</h3>
-    {% for comment in post.comment_set.all %}
-        <li>
-            {{ comment.message }}
-            <small>by {{ comment.author }}</small>
-            <small>at {{ comment.updated_at }}</small>
-        </li>
-    {% endfor %}
+                <h3>Comments</h3>
+                <ul>
+                    {% for comment in post.comment_set.all %}
+                        <li>
+                            {{ comment.message }}
+                            <small>by {{ comment.author }}</small>
+                            <small>at {{ comment.updated_at }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-    <hr>
-    <a href="{% url "blog:post_list" %}">post_list</a>
+                <hr>
+                <a href="{% url "blog:post_list" %}">post_list</a>
+            </div>
+        </div>
+    </div>
 {%  endblock %}
