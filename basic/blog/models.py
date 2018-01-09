@@ -2,6 +2,7 @@ import re
 
 from django.db import models
 from django.forms import ValidationError
+from django.conf import settings
 
 
 def lnglat_validator(value):
@@ -16,7 +17,7 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
-    author = models.CharField(max_length=20)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     # 길이 제한이 있는 문자열
     title = models.CharField(max_length=100,
                              verbose_name='제목',
