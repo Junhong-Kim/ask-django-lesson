@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Ask-Django-Basic</h1>
+{% extends "blog/layout.html" %}
 
+{% block content %}
     <form action="" method="get">
         <input type="text" name="q" value="{{ q }}">
         <input type="submit" value="search">
@@ -24,5 +18,4 @@
         </li>
     {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
