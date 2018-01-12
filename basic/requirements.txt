@@ -2,3 +2,4 @@ django==1.11.9
 django-debug-toolbar
 django-extensions
 ipython[notebook]
+django-bootstrap3
