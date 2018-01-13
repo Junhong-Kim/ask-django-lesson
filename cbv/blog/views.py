@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
@@ -41,12 +41,13 @@ class PostListView(ListView):
     model = Post
 
     def head(self, *args, **kwargs):
-        post = self.get_queryset().latest('id')
-
-        time = timezone.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
+        try:
+            post = self.get_queryset().latest('id')
+        except Post.DoesNotExist:
+            raise Http404
 
         response = HttpResponse()
-        response['Last-Modified'] = time
+        response['Last-Modified'] = post.updated_at.strftime('%a, %d %b %Y %H:%M:%S GMT')
         return response
 
 
