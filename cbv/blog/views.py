@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import ListView
+from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 
@@ -33,6 +35,22 @@ from .forms import PostForm
 #
 # def evening_greeting(request):
 #     return greeting(request, 'Evening to ya')
+
+
+class PostListView(ListView):
+    model = Post
+
+    def head(self, *args, **kwargs):
+        post = self.get_queryset().latest('id')
+
+        time = timezone.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+        response = HttpResponse()
+        response['Last-Modified'] = time
+        return response
+
+
+post_list = PostListView.as_view(model=Post)
 
 
 def greeting_view(message):
